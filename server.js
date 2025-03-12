@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const puppeteer = require('puppeteer-core'); // <-- Use puppeteer-core instead
+const puppeteer = require('puppeteer'); // Use full Puppeteer (auto-downloads Chrome)
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -12,7 +13,6 @@ let page;
 async function initBrowser() {
     browser = await puppeteer.launch({
         headless: "new",
-        executablePath: "/usr/bin/google-chrome-stable",
         args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
     page = await browser.newPage();
