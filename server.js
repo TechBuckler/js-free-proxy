@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const puppeteer = require('puppeteer'); // Use full Puppeteer (auto-downloads Chrome)
+const puppeteer = require('puppeteer');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,8 +13,10 @@ let page;
 
 async function initBrowser() {
     browser = await puppeteer.launch({
-        headless: "new",
-        args: ["--no-sandbox", "--disable-setuid-sandbox"]
+        headless: true,
+        executablePath: '/usr/bin/google-chrome-stable',
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        cacheDirectory: path.join(__dirname, '.cache', 'puppeteer')
     });
     page = await browser.newPage();
     const TARGET_URL = process.env.TARGET_URL || 'https://bloodrizer.github.io/kittensgame/';

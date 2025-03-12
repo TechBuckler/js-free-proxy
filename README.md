@@ -1,46 +1,32 @@
-# JS-Free Proxy Middleware
+# Render Puppeteer Fix
 
-This project converts a JavaScript-heavy page into a static HTML mirror with interactive forms.
+This project sets up Puppeteer on Render **with a system-installed Chrome**, ensuring that JavaScript-heavy pages can be rendered properly.
 
-## Setup
+## Setup & Deployment
 
-1. Install Node.js
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Set environment variables (optional):
-   ```bash
-   export TARGET_URL="https://bloodrizer.github.io/kittensgame/"
-   export PORT=3000
-   ```
-4. Start the server:
-   ```bash
-   npm start
-   ```
+### 1️⃣ Modify Render Build Command
+In your **Render Dashboard → Settings**, update the **Build Command** to:
 
-## Deployment
-
-### Option 1: Glitch (Free Hosting)
-- Create a new project on [Glitch](https://glitch.com/)
-- Upload `server.js`, `package.json`
-- Set `TARGET_URL` in project settings
-
-### Option 2: Railway / Render / Replit
-- Upload code
-- Set environment variables
-- Deploy the service
-
-### Optional: Static Redirect Page (GitHub Pages)
-Create an `index.html` with:
-```html
-<!DOCTYPE html>
-<html>
-<head><meta http-equiv="refresh" content="0; url=https://your-project.glitch.me/view"></head>
-<body><p><a href="https://your-project.glitch.me/view">Click here</a> if not redirected.</p></body>
-</html>
+```sh
+./install_chromium.sh && npm install
 ```
-Host it on GitHub Pages for a quick public entry point.
 
-## Summary
-This middleware loads a live page in a headless browser, removes scripts, and serves a pure HTML snapshot (auto-refreshing every second).
+This installs Chrome **before** installing Node.js dependencies.
+
+### 2️⃣ Deploy on Render
+- Go to **Render → Manual Deploy**  
+- Click **"Deploy latest commit"**  
+- Wait for it to finish.
+
+### 3️⃣ Test It
+Visit:
+```
+https://your-app-name.onrender.com/view
+```
+
+### 🔧 Fixes Implemented
+- **Installs Chrome during build**
+- **Uses Puppeteer with system-installed Chrome**
+- **Sets correct cache path for Puppeteer**
+
+If any issues arise, check **Render Logs**. 🚀

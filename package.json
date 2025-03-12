@@ -1,14 +1,14 @@
 {
-  "name": "js-free-proxy",
+  "name": "render-puppeteer-fix",
   "version": "1.0.0",
-  "description": "A middleware that converts a JS-driven page into a pure HTML, auto-refreshing snapshot with interactive forms.",
+  "description": "Puppeteer-based proxy that works with Render",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-"dependencies": {
-  "puppeteer-core": "^22.8.2",
-  "express": "^4.18.2",
-  "body-parser": "^1.20.2"
- }
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "puppeteer": "^22.8.2"
+  }
 }
